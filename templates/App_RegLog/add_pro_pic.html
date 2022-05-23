@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!-- {% load static %} -->
+
+
+
+{% block title_block %} Change Profile Pic {% endblock %}
+<!-- {% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %} -->
+
+
+
+
+
+{% block body %}
+<form method="POST" enctype="multipart/form-data">
+  {{ form|crispy }}
+
+  {% csrf_token %}
+  <button type="submit" class="btn btn-success">change profile picture </button>
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+<!-- {% load crispy_forms_tags %} -->
+<!-- {% load static %} -->
+
+{% load custom_filters %}
+
+{% block title_block %} MY BLOGS {% endblock %}
+<!-- {% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %} -->
+
+{% block body %}
+
+{% for blogs in user.blog_author.all %}
+<h3>{{blog.blog_title}}</h3>
+<h6>{{blog.publish_date}}</h6>
+<div class="row">
+  <div class="col-sm-4">
+    <img src="/media/{{blogs.blog_image}}" width="100%">
+  </div>
+  <div class="col-sm-8">
+
+    <p>{{blogs.blog_content|range_filter|linebreaks}} </p>
+    <a href="{% url 'Blog:blog_details' slug=blogs.slug %}">Read More</a>
+    <br><br>
+    <b>{{blogs.liked_blog.count}} Likes | {{blogs.blog_comment.count}} Comments</b>
+    <br><br>
+    <a href="{% url 'Blog:update_blog' pk=blogs.pk %}">Edit Blog</a>
+  </div>
+</div>
+
+<hr>
+{% endfor %}
+{% endblock %}

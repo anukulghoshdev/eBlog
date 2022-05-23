@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block title_block %} Create your Blogs{% endblock %}
+{% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %}
+
+
+{% block body %}
+<h2>Write your Blog: </h2>
+<form method="POST" enctype="multipart/form-data">
+{{ form|crispy }}
+{% csrf_token %}
+
+<button type="submit" class="btn btn-success btn-sm">Publish</button>
+<br><br>
+</form>
+{% endblock %}

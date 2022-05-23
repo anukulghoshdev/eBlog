@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!-- {% load static %} -->
+<!-- {% load custom_filters %} -->
+{% block title_block %} UPDATA BLOG {% endblock %}
+<!-- {% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %} -->
+{% block body %}
+
+{% if blog.author == user %}
+<form method="POST">
+  {{form | crispy}}
+  {% csrf_token %}
+  <button type="submit" name="button" class="btn btn-success">Update</button>
+</form>
+{% else %}
+<p>Your are not allwed to view this page. 404</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!-- {% load static %} -->
+{% block title_block %} Login{% endblock %}
+<!-- {% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %} -->
+
+{% block body %}
+
+<h3 class="text-center">Log In</h3>
+<form method="POST">
+  {% csrf_token %}
+  {{ form|crispy }}
+
+  <input type="submit"  value="Log In" class="btn btn-success">
+
+  <!-- <button type="button" name="button"></button> -->
+</form>
+<br>
+<a href="#">forget password?</a>
+<br>
+<hr>
+
+<a href="{% url 'RegLog:singup' %}" class="btn btn btn-primary">Create New Account</a>
+
+
+{% endblock %}

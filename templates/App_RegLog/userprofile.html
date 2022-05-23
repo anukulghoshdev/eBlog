@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title_block %} Profile {% endblock %}
+<!-- {% block linkcss %}<link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endblock %} -->
+
+
+
+{% block body %}
+<h1>Profile</h1>
+
+{% if user.userinfo %}
+<img src='/media/{{ user.userinfo.profile_pic }}' class="rounded-circle  border border-dark" width="100" >
+
+<br><br>
+<a href="{% url 'RegLog:change_pro_pic' %}" class="btn btn-info">Change Profile Picture</a>
+
+{% else %}
+<img src='/media/profile_pics/pp.png' class="rounded-circle" width="100px">
+<br><br>
+<a href="{% url 'RegLog:add_pro_pic' %}" class="btn btn-info">Change Profile Picture</a>
+<br><br>
+
+{% endif %}
+<br><br>
+<h4>{{ user.first_name }} {{ user.last_name }}</h4>
+
+<b>Username:</b> {{user.username}}
+<br>
+<b>Email:</b> {{ user.email }}</p>
+
+
+<br>
+<a href="{% url 'RegLog:change_profile' %}" class="btn btn-warning"> Change Profile Info.</a>
+{% endblock %}
